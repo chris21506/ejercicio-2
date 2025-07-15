@@ -1,31 +1,67 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36202.13 d17.14
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ejercicio 2 examen 2", "ejercicio 2 examen 2.vcxproj", "{FC3FFE87-6241-4638-870F-DACB298B01C7}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FC3FFE87-6241-4638-870F-DACB298B01C7}.Debug|x64.ActiveCfg = Debug|x64
-		{FC3FFE87-6241-4638-870F-DACB298B01C7}.Debug|x64.Build.0 = Debug|x64
-		{FC3FFE87-6241-4638-870F-DACB298B01C7}.Debug|x86.ActiveCfg = Debug|Win32
-		{FC3FFE87-6241-4638-870F-DACB298B01C7}.Debug|x86.Build.0 = Debug|Win32
-		{FC3FFE87-6241-4638-870F-DACB298B01C7}.Release|x64.ActiveCfg = Release|x64
-		{FC3FFE87-6241-4638-870F-DACB298B01C7}.Release|x64.Build.0 = Release|x64
-		{FC3FFE87-6241-4638-870F-DACB298B01C7}.Release|x86.ActiveCfg = Release|Win32
-		{FC3FFE87-6241-4638-870F-DACB298B01C7}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6100C64E-D85A-4A56-BC3E-398730A66766}
-	EndGlobalSection
-EndGlobal
+//Julio Christopher Beltran Solano
+// youtube video https://youtu.be/9LKr1mGdkTA?si=E5MbE22sj_Nk66IG
+#pragma once
+
+#include <iostream>
+#include "SentinelLinkedList.h" // Asegúrate que tenga PushBack, PopFront, GetCount, IsEmpty
+using namespace std;
+
+template <typename T>
+class LQueue
+{
+public:
+	// Retorna el número de elementos, delegando a la lista
+	int GetCount() {
+		return list.GetCount();
+	}
+
+	void Enqueue(T value) {
+		list.PushBack(value); // Añade al final
+	}
+
+	T Dequeue() {
+		return list.PopFront(); // Quita del frente
+	}
+
+private:
+	SentinelLinkedList<T> list;
+};
+
+#include "Queue.h"
+#include "LQueue.h"
+#include <iostream>
+using namespace std;
+
+int main() {
+	cout << "=== PRUEBA DE Queue (arreglo fijo) ===" << endl;
+	Queue<int> q1;
+
+	q1.Enqueue(1);
+	q1.Enqueue(2);
+	q1.Enqueue(3);
+
+	cout << "Elementos en Queue: " << q1.GetCount() << endl;
+
+	cout << "Dequeue: " << q1.Dequeue() << endl;
+	cout << "Dequeue: " << q1.Dequeue() << endl;
+
+	cout << "Elementos restantes: " << q1.GetCount() << endl;
+
+	cout << "\n=== PRUEBA DE LQueue (lista ligada) ===" << endl;
+	LQueue<int> q2;
+
+	q2.Enqueue(10);
+	q2.Enqueue(20);
+	q2.Enqueue(30);
+
+	cout << "Elementos en LQueue: " << q2.GetCount() << endl;
+
+	cout << "Dequeue: " << q2.Dequeue() << endl;
+	cout << "Dequeue: " << q2.Dequeue() << endl;
+
+	cout << "Elementos restantes: " << q2.GetCount() << endl;
+
+	return 0;
+}
+
+
